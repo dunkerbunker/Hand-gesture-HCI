@@ -40,7 +40,7 @@ while True:
     lmList = detector.findPosition(img, draw=False)
 
     if lmList is not None:
-        # print(lmList[2])
+        print(lmList[2])
 
         x1, y1 =  lmList[4][1], lmList[4][2]   
         x2, y2 =  lmList[8][1], lmList[8][2] 
