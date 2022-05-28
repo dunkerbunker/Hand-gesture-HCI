@@ -1,11 +1,12 @@
 import cv2
+import mediapipe
 import time
 import os
 import HandTrackingModule as htm
 
 wCam, hCam = 640, 480
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 cap.set(3, wCam)
 cap.set(4, hCam)
@@ -32,7 +33,7 @@ while True:
     lmList = detector.findPosition(img, draw=False)
 
     # print(lmList)
-    if len(lmList) != 0:
+    if lmList is not None:
         fingers = []
         # Thumb
         if lmList[tipIds[0]][1] > lmList[tipIds[0] - 1][1]:
@@ -61,7 +62,9 @@ while True:
     cTime = time.time()
     fps = 1 / (cTime - pTime)
     pTime = cTime
-    cv2.putText(img, f'FPS: {int(fps)}', (400, 70), cv2.FONT_HERSHEY_PLAIN,
-                3, (255, 0, 0), 3)
-    cv2.imshow("Image", img)
-    cv2.waitKey(1)
+
+    cv2.putText(img, str(int(fps)), (40, 50), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 0, 255), 2)
+
+    cv2.imshow('image', img)
+    if(cv2.waitKey(1) & 0xFF == ord('q')):
+        break
