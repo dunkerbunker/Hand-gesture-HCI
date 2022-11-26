@@ -1,6 +1,8 @@
 import keyboard
 import mss
 import cv2
+import os
+import sys
 import numpy
 from time import time, sleep
 import pyautogui
