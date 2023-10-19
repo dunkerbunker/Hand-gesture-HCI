@@ -49,7 +49,7 @@ def main():
         success, img = cap.read()
         img = detector.findHands(img)
         lmList = detector.findPosition(img)
-        if len(lmList) !=  0:
+        if lmList is not None and len(lmList) != 0:
             print(lmList)
 
         cTime = time.time()
